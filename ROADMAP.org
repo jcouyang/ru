@@ -1,9 +1,15 @@
-* completed [0/21]
-** TODO lambda
+* completed [2/21]
+** DONE lambda
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
+:END:
 ** TODO let
 ** TODO recur
 ** TODO loop
-** TODO defn
+** DONE defn
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
+:END:
 ** TODO cond
 ** TODO when
 ** TODO when-let
