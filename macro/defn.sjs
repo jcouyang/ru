@@ -50,6 +50,14 @@ macro defn{
         }
     }
   }
+
+  rule { { $(($args (,) ...){$body ...})...} } => {
+    (function (){
+        switch(arguments.length){
+          $(caseFunc ($args...) {$body...})...
+        }
+    })
+  }
 }
 export defn;
 // defn arifunc {
