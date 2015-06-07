@@ -51,7 +51,7 @@ macro defn{
     }
   }
 }
-
+export defn;
 // defn arifunc {
 //   (a, b){console.log('2 arity', a, b)}
 //   (a) {console.log('1 arity', a)}
