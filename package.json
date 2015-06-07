@@ -1,0 +1,22 @@
+{
+  "name": "ru-lang",
+  "version": "0.1.0",
+  "description": "mori + macro => clojure flavored js",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcouyang/ru.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jcouyang/ru/issues"
+  },
+  "homepage": "https://github.com/jcouyang/ru",
+  "devDependencies": {
+    "jasmine-node": "^1.14.5"
+  }
+}
