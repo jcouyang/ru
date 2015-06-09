@@ -33,34 +33,68 @@ macro case_param {
   }
 }
 macro caseFunc {
-  case {_ ($args...) {$body...}} =>
-  {
-    letstx $len = [makeValue(localExpand(#{$args...}).length , null)];
+case {_ ($args...) {$body...}} =>
+    {
+      letstx $len = [makeValue(localExpand(#{$args...}).length , null)];
     return #{
-        case_param $len ($args...) $body...
-        break
+      case_param $len ($args...) $body...
     }
   }
 }
 macro defn{
-  rule { $name { $(($args (,) ...){$body ...})...} } => {
+  rule { $name { $(($args (,) ...){$body ... $last:expr $[;]})...} } => {
+    function $name (){
+      switch(arguments.length){
+        $(caseFunc ($args...) {$body...};
+          return $last;
+          break;
+         )...
+      }
+    }
+  }
+
+
+  rule { $name { $(($args (,) ...){$body ... $last:expr})...} } => {
     function $name (){
         switch(arguments.length){
-          $(caseFunc ($args...) {$body...})...
+          $(caseFunc ($args...) {$body...};
+            return $last;
+            break;
+           )...
         }
     }
   }
 
-  rule { { $(($args (,) ...){$body ...})...} } => {
+
+  rule { { $(($args (,) ...){$body ...  $last:expr})...} } => {
     (function (){
         switch(arguments.length){
-          $(caseFunc ($args...) {$body...})...
+          $(caseFunc ($args...) {$body...};
+            return $last;
+            break;
+           )...
         }
     })
   }
+
+  rule { { $(($args (,) ...){$body ...  $last:expr;})...} } => {
+    (function (){
+      switch(arguments.length){
+        $(caseFunc ($args...) {$body...};
+          return $last;
+          break;
+         )...
+      }
+    })
+  }
+
+  rule { $name { $($args (,) ... => $body:expr)...} } => {
+    function $name (){
+        switch(arguments.length){
+          $(caseFunc ($args...) {};
+           return $body)...
+        }
+    }
+  }
 }
 export defn;
-// defn arifunc {
-//   (a, b){console.log('2 arity', a, b)}
-//   (a) {console.log('1 arity', a)}
-// }
