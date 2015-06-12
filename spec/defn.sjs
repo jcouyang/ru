@@ -26,15 +26,8 @@ fact 'defn' {
   fact 'with all statements' {
     defn f{(a){
       a=1;
-      a;}};
+      a}};
     should f(2) => 1;
   }
-  fact 'defn function with arrow expr' {
-    defn f {
-      a=>a
-      a, b => a+b
-    };
-    should f(1) => 1;
-    should f(1,3) => 4;
-  }
+
 }
