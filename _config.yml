@@ -1,0 +1,11 @@
+# Site settings
+title: 入语言(ru-lang)
+email: oyanglulu@gmail.com
+description: ru-lang is a functional language build on top of clojurescript datastructure and macros. powed by mori and sweet.js
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://ru-lang.org" # the base hostname & protocol for your site
+twitter_username: oyanglulu
+github_username:  jcouyang
+
+# Build settings
+markdown: kramdown
