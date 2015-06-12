@@ -1,4 +1,5 @@
 # 入(rù) lang
+[![Circle CI](https://circleci.com/gh/jcouyang/ru.svg?style=svg)](https://circleci.com/gh/jcouyang/ru)
 
 > May the 入 be with You!
 
