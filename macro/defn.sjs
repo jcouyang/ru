@@ -1,4 +1,3 @@
-//var macro from http://jlongster.com/Sweet.js-Tutorial--2--Recursive-Macros-and-Custom-Pattern-Classes
 macro caseFunc {
     case {_ ($args...) {$body... $last:expr}} =>
     {
