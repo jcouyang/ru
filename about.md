@@ -4,8 +4,16 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+`comming :soon: ...`
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+入 is a bunch of macro and datastructure ported from clojure to javascript
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+入 is based on 森(mori) + sweet.js macros
+
+入 is begin something
+
+入 is become something
+
+入 is a chinese charactor trying his best pretending to be a λ
+
+> May the 入 be with You!

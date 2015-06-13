@@ -1,5 +1,5 @@
 # Site settings
-title: 入语言(ru-lang)
+title: 入(rù-lang)
 email: oyanglulu@gmail.com
 description: ru-lang is a functional language build on top of clojurescript datastructure and macros. powed by mori and sweet.js
 baseurl: "" # the subpath of your site, e.g. /blog/
