@@ -9,3 +9,7 @@ github_username:  jcouyang
 
 # Build settings
 markdown: kramdown
+highlighter: true
+fenced_code_blocks: true
+kramdown:
+  input: GFM

@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
-`comming :soon: ...`
-
 入 is a bunch of macro and datastructure ported from clojure to javascript
 
 入 is based on 森(mori) + sweet.js macros
