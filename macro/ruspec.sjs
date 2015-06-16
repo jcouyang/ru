@@ -8,16 +8,10 @@ macro fact {
 
 macro should {
 
-    rule {
-    $actual:expr => $expect:expr
-  } => {
-    (it('',function(){expect($actual).toBe($expect)}))
-  }
-
   rule {
-    $name:lit $actual:expr => $expect:expr
+    $actual... => $expect:expr
   } => {
-    (it($name,function(){expect($actual).toBe($expect)}))
+    (it('',function(){expect($actual...).toBe($expect)}))
   }
 }
 

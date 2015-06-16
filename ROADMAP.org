@@ -1,13 +1,17 @@
-* completed [2/21]
+* completed [3/20]
 ** DONE lambda
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
 :END:
-** IN PROGRESS let
+** DONE let
 :LOGBOOK:  
+- State "DONE"       from "IN PROGRESS" [2015-06-16 Tue 15:33]
 - State "IN PROGRESS" from "TODO"       [2015-06-13 Sat 23:24]
 :END:      
-** TODO recur
+** IN PROGRESS recur
+:LOGBOOK:  
+- State "IN PROGRESS" from "TODO"       [2015-06-14 Sun 22:38]
+:END:      
 ** TODO loop
 ** DONE defn
 :LOGBOOK:
@@ -23,7 +27,6 @@
 ** TODO if-not
 ** TODO dotimes
 ** TODO doseq
-** TODO cond
 ** TODO ->
 ** TODO defmulti
 ** TODO defmethod
