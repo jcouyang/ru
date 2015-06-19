@@ -8,8 +8,5 @@ twitter_username: oyanglulu
 github_username:  jcouyang
 
 # Build settings
-markdown: kramdown
-highlighter: pygments
-fenced_code_blocks: true
-kramdown:
-  input: GFM
+markdown: redcarpet
+
