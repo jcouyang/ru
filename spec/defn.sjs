@@ -30,4 +30,11 @@ fact 'defn' {
     should f(2) => 1;
   }
 
+  fact 'recur function' {
+    defn f{(a,b){
+      if(a>b) return a;
+      recur(a++,b--)
+    }}
+    should f(1,36) => 19
+  }
 }
