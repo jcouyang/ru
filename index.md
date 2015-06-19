@@ -49,9 +49,29 @@ layout: default
 
 ### destructure let
 ```js
-fact 'destructure nested array' {
+  fact 'destructure nested array' {
     should let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
       x+y+z
     } => 7
+  }
+```
+
+## looprecur
+```javascript
+  fact 'recur function' {
+    defn f{(a,b){
+      if(a>b) return a;
+      recur(a++,b--)
+    }}
+    should f(1,36) => 19
+  }
+```
+
+```javascript
+  fact 'looprecur' {
+    loop(a=1,b=36){
+      if(a>b) return a;
+      recur(a++,b--)
+    } => 19
   }
 ```
