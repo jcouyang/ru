@@ -22,4 +22,10 @@ fact 'Let' {
     };
     should x+y => 5
   }
+
+  fact 'destructure' {
+    should let([x,y]=[1,2,3], [z] = [4,5,6]){
+      x+y+z
+    } => 7
+  }
 }
