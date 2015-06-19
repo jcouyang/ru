@@ -55,7 +55,7 @@ macro defn{
   }
 }
 export defn;
-defn f{(a,b){
-  if(a===b) return a
-  recur(a++,b--)
-}}
+// defn f{(a,b){
+//   if(a===b) return a
+//   recur(a++,b--)
+// }}

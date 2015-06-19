@@ -76,8 +76,8 @@ macro loop {
 }
 export loop
 
-loop(a=1,b=18){
-  if (a > b)
-    return a
-  recur (a++,b--)
-}
+// loop(a=1,b=18){
+//   if (a > b)
+//     return a
+//   recur (a++,b--)
+// }
