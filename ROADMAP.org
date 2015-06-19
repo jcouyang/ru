@@ -3,13 +3,13 @@
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
 :END:
-** DONE let
+** IN PROGRESS let
 :LOGBOOK:  
-- State "DONE"       from "IN PROGRESS" [2015-06-16 Tue 15:33]
 - State "IN PROGRESS" from "TODO"       [2015-06-13 Sat 23:24]
 :END:      
-** IN PROGRESS recur
+** DONE recur
 :LOGBOOK:  
+- State "DONE"       from "IN PROGRESS" [2015-06-19 Fri 13:58]
 - State "IN PROGRESS" from "TODO"       [2015-06-14 Sun 22:38]
 :END:      
 ** TODO loop
