@@ -1,4 +1,3 @@
-
 macro destruct {
   // empty
   rule {[]=$val:expr} => {}
@@ -6,11 +5,14 @@ macro destruct {
   rule {$id:ident=$val:expr} => {$id=($val)}
   // one
   rule {[$id:ident]=$val:expr} => { $id=($val[0]) }
+  // nested one
+  rule {[[$id]]=$val:expr} => { destruct [$id]=($val[0]) }
   // tail
   rule { [,$last:ident]=$val:expr}=>{$last=($val[0])}
-  rule {[, $id:ident $tail...]=$val:expr}=> {$id=($val.shift()), destruct [$tail...]=$val.slice(1)}
+  rule { [,[$last]]=$val:expr}=>{destruct [$last]=($val[0])}
+  rule {[, $id:ident $tail...]=$val:expr}=> {destruct $id=($val.shift()), destruct [$tail...]=$val.slice(1)}
   //whole
-  rule {[$id:ident $tail...]=$val:expr} => { $id=($val.shift()), destruct [$tail...]=$val.slice(1)}
+  rule {[$id:ident $tail...]=$val:expr} => {destruct $id=($val.shift()), destruct [$tail...]=$val.slice(1)}
 }
 
 macro let { 
@@ -27,7 +29,6 @@ case {_ ($($param:invoke(destruct)) (,)...){$body...$last:expr} } => {
       vals.push(makePunc(',',#{here}));
       keys.push(makePunc(',',#{here}));
     }
-  console.log(vals,keys)
     vals.pop();keys.pop();
     return [makeDelim('()', [
     makeKeyword('function', #{_}),
@@ -39,9 +40,7 @@ case {_ ($($param:invoke(destruct)) (,)...){$body...$last:expr} } => {
 
 }
 
-let ([c,a,b]=[1,2,3]){a+b+c};
-let(a=1,[b]=[2,3]){a+b}
-let([x,y]=[1,2,3], [z] = [4,5,6]){
+let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
       x+y+z
-    }
+}
 export let

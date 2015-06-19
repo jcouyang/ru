@@ -23,8 +23,14 @@ fact 'Let' {
     should x+y => 5
   }
 
-  fact 'destructure' {
+  fact 'destructure array' {
     should let([x,y]=[1,2,3], [z] = [4,5,6]){
+      x+y+z
+    } => 7
+  }
+
+  fact 'destructure nested array' {
+    should let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
       x+y+z
     } => 7
   }
