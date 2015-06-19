@@ -46,3 +46,12 @@ layout: default
     should let(a=1,b=2){a+b} => 3;
   }
 ```
+
+### destructure let
+```js
+fact 'destructure nested array' {
+    should let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
+      x+y+z
+    } => 7
+  }
+```
