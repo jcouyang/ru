@@ -34,4 +34,13 @@ fact 'Let' {
       x+y+z
     } => 7
   }
+
+  fact 'looprecur' {
+    should loop(a=1,b=18){
+      if (a > b)
+        return a
+      recur (a++,b--)
+    }
+      => 10
+  }
 }
