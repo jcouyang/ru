@@ -75,3 +75,18 @@ layout: default
     } => 19
   }
 ```
+
+## Existential
+```js
+  fact '?()' {
+    fact 'nil'{
+      var a = {b:null};
+      should a.b?() => undefined  
+    }
+    fact 'not nil' {
+      var a = {b:null};
+      a.b =fn(5);
+      should a.b?() => 5
+    }
+  }
+```
