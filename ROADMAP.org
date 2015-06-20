@@ -1,4 +1,4 @@
-* completed [3/20]
+* completed [4/20]
 ** DONE lambda
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
@@ -7,12 +7,20 @@
 :LOGBOOK:  
 - State "IN PROGRESS" from "TODO"       [2015-06-13 Sat 23:24]
 :END:      
+*** DONE destructure array
+:LOGBOOK:  
+- State "DONE"       from ""           [2015-06-20 Sat 15:19]
+:END:      
+*** destructure object
 ** DONE recur
 :LOGBOOK:  
 - State "DONE"       from "IN PROGRESS" [2015-06-19 Fri 13:58]
 - State "IN PROGRESS" from "TODO"       [2015-06-14 Sun 22:38]
 :END:      
-** TODO loop
+** DONE loop
+:LOGBOOK:  
+- State "DONE"       from "TODO"       [2015-06-20 Sat 15:19]
+:END:      
 ** DONE defn
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
