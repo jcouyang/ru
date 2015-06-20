@@ -4,7 +4,7 @@ layout: default
 
 # What is 入
 
-入 is a bunch of macro and datastructure ported from clojure to javascript
+入 is a bunch of macros and datastructures ported from clojure to javascript
 
 入 is based on 森(mori) + sweet.js macros
 
@@ -12,15 +12,15 @@ layout: default
 
 入 is become something
 
-入 is a chinese charactor trying his best pretending to be a λ
+入 is a chinese character trying his best pretending to be a λ
 
 > May the 入 be with You!
 
 # Why 入
 
-- JavaScript is flexiable language but incomplete
+- JavaScript is a flexible, but incomplete language
 - CoffeeScript's indention is annoying, it's like a weirdo kid of ruby and python.
-- ClojureScript is awesome but completely annother language, inconvenience when interop JavaScript library.
+- ClojureScript is awesome but completely annother language, inconvenient for JavaScript interop.
 
 so 入 here to to rip all good parts of clojure into native macros of JavaScript
 
