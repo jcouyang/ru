@@ -91,11 +91,16 @@ layout: default
   }
 ```
 
-## 入 mori datastructure
+## 入(rù) mori datastructure
 ```js
 ru(map(inc, [0,1,2,3,4]))
 // => mori.map(mori.inc, [0,1,2,3,4])
 
 into([1],[3,4,5,6])
 // => mori.into(mori.vector(1),[3,4,5,6])
+```
+
+## 出(chū) mori datastructure
+```js
+should chu(map(inc, [0,1,2,3,4])).pop() => 5
 ```
