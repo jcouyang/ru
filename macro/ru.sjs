@@ -5,7 +5,7 @@ case {_ ($param:expr)} => {
     return param.map(function(p){
       
       if(p.token.inner) p.token.inner = addMori(p.token.inner)
-      if(p.token.type===parser.Token.Identifier && MORI_KEYWORDS.indexOf(p.token.value)){
+      if(p.token.type===parser.Token.Identifier && MORI_KEYWORDS.indexOf(p.token.value)>=0){
         return makeIdent('mori.'+p.token.value, p)
       }else{
         return p
@@ -46,5 +46,4 @@ macro chu {
   }
 }
 export chu;
-// ru(vectro(1,2,3))
-// chu(vector([1,2,3]))
+chu(map(fn(a([0],$)),[1,2,3]))
