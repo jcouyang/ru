@@ -19,4 +19,19 @@ case {_ ($param:expr)}=>{
 }
 }
 export ru;
+let into = macro {
+case {_ ($to, $from...)} => {
+  var value = #{$to}[0].token.value;
+  letstx $content = #{$to}[0].token.inner
+  if(value==='[]')
+    return #{ru(into(vector($content), $from...))}
+  if(value==='{}')
+    return #{ru (into(hashMap($content), $from...))}
+  else
+    return #{ru(into($to, $from...))}
+  }
+}
+
+export into;
+
 //ru(map(sum, 1))
