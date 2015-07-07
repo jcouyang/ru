@@ -39,7 +39,7 @@ fact 'Let' {
     should $loop(a=1,b=18){
       if (a > b)
         return a
-      $recur (a++,b--)
+      recur (a++,b--)
     }
       => 10
   }

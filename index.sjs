@@ -194,7 +194,7 @@ $let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
 export $let
 
 macro $loop {
-  rule {($params...){$body... $recur($binding:expr(,)...)}} => {
+  rule {($params...){$body... recur($binding:expr(,)...)}} => {
     $let($params...){
       while (true) {
         $body...;
