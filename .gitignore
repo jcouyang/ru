@@ -31,3 +31,8 @@ node_modules
 
 .tern-port
 build
+
+Gemfile
+Gemfile.lock
+_site
+.sass-cache
