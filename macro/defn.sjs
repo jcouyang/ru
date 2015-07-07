@@ -25,7 +25,7 @@ macro caseFunc {
 
 }
 
-macro defn{
+macro $defn{
   rule { $name { $(($args (,) ...){$body... recur ($binding:expr(,)...)})...} } => {
     function $name (){
       switch(arguments.length){
@@ -54,8 +54,8 @@ macro defn{
     })
   }
 }
-export defn;
-// defn f{(a,b){
+export $defn;
+// $defn f{(a,b){
 //   if(a===b) return a
 //   recur(a++,b--)
 // }}

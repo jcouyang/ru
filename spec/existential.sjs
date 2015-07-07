@@ -18,7 +18,7 @@ fact 'Existential' {
     }
     fact 'not nil' {
       var a = {b:null};
-      a.b =fn(5);
+      a.b =$$(5);
       should a.b?() => 5
     }
   }

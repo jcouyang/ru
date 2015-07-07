@@ -1,16 +1,16 @@
-fact 'defn' {
-  fact 'defn w name' {
-    defn f {(a){a}};
+fact '$defn' {
+  fact '$defn w name' {
+    $defn f {(a){a}};
     should f(1) => 1;
   }
 
-  fact 'defn w/o name' {
-    var f = defn {(a){a}};
+  fact '$defn w/o name' {
+    var f = $defn {(a){a}};
     should f(1) => 1;
   }
 
-  fact 'defn arity func' {
-    defn f {
+  fact '$defn arity func' {
+    $defn f {
       (a){a}
       (a, b) {a+b}
     }
@@ -19,19 +19,19 @@ fact 'defn' {
   }
 
   fact 'with statements, final is expression' {
-    var f = defn {(a){a=1;a}};
+    var f = $defn {(a){a=1;a}};
     should f(2) => 1;
   }
 
   fact 'with all statements' {
-    defn f{(a){
+    $defn f{(a){
       a=1;
       a}};
     should f(2) => 1;
   }
 
   fact 'recur function' {
-    defn f{(a,b){
+    $defn f{(a,b){
       if(a>b) return a;
       recur(a++,b--)
     }}

@@ -49,7 +49,7 @@ macro caseFunc {
 
 }
 
-macro defn{
+macro $defn{
   rule { $name { $(($args (,) ...){$body... recur ($binding:expr(,)...)})...} } => {
     function $name (){
       switch(arguments.length){
@@ -78,8 +78,8 @@ macro defn{
     })
   }
 }
-export defn;
-// defn f{(a,b){
+export $defn;
+// $defn f{(a,b){
 //   if(a===b) return a
 //   recur(a++,b--)
 // }}
@@ -101,7 +101,7 @@ export (?)
 
 
 
-macro fn {
+macro $$ {
 case {
   $ctx
   ($body:expr)
@@ -124,8 +124,8 @@ case {
 }
 }
 
-// fn($+$2+$1+$5+($5+$1))
-export fn;
+$$($+$2+$1+$5+($5+$1))
+export $$;
 
 macro destruct {
   // empty
@@ -144,7 +144,7 @@ macro destruct {
   rule {[$id:ident $tail...]=$val:expr} => {destruct $id=($val.shift()), destruct [$tail...]=$val.slice(1)}
 }
 
-macro let { 
+macro $let { 
 case {_ ($($param:invoke(destruct)) (,)...){$body:expr...$last:expr} } => {
     var param = localExpand(#{$param...});
     var keys=[],vals=[]
@@ -188,14 +188,14 @@ case {_ ($($param:invoke(destruct)) (,)...){$body:expr...$last:expr} } => {
   rule { $id:ident } => { var $id }
 }
 
-let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
+$let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
       x+y+z
 }
-export let
+export $let
 
-macro loop {
-  rule {($params...){$body... recur($binding:expr(,)...)}} => {
-    let($params...){
+macro $loop {
+  rule {($params...){$body... $recur($binding:expr(,)...)}} => {
+    $let($params...){
       while (true) {
         $body...;
           $binding(;)...
@@ -203,7 +203,7 @@ macro loop {
     }
   }
 }
-export loop
+export $loop
 
 // loop(a=1,b=18){
 //   if (a > b)
@@ -213,7 +213,7 @@ export loop
 
 macro morize {
 case {_ ($param:expr)} => {
-  var MORI_KEYWORDS = ["sortBy", "partial", "isIndexed", "map", "zipmap", "compare", "seq", "isSubset", "range", "into", "isMap", "peek", "mergeWith", "isSymbol", "rename", "reduceKV", "list", "constantly", "isCollection", "fnil", "isReversible", "lazySeq", "next", "transduce", "keys", "lt", "subvec", "isEven", "keep", "index", "find", "partitionBy", "dissoc", "mapIndexed", "every", "sortedSet", "resetMeta", "sum", "pop", "reverse", "hash", "queue", "repeat", "project", "dedupe", "second", "iterate", "union", "isSequential", "nth", "configure", "comp", "partition", "isSuperset", "isReduceable", "eduction", "getIn", "take", "isList", "rest", "isVector", "count", "gt", "cons", "sort", "keepIndexed", "apply", "gte", "completing", "distinct", "alterMeta", "dropWhile", "isOdd", "sequence", "drop", "isSet", "sortedMapBy", "vals", "inc", "renameKeys", "vector", "identity", "keyword", "remove", "interleave", "mapcat", "varyMeta", "sortedSetBy", "concat", "filter", "symbol", "isKeyword", "empty", "intersection", "mutable", "selectKeys", "isCounted", "pipeline", "curry", "subseq", "sortedMap", "updateIn", "last", "interpose", "groupBy", "takeWhile", "conj", "meta", "each", "intoArray", "join", "isSeqable", "withMeta", "lte", "takeNth", "set", "some", "primSeq", "juxt", "isEmpty", "notEquals", "isSeq", "reduce", "knit", "flatten", "repeatedly", "hasKey", "assoc", "mapInvert", "hashMap", "dec", "disj", "assocIn", "difference", "get", "merge", "equals", "isAssociative", "first", "partitionAll"];
+  var MORI_KEYWORDS = ["sortBy", "partial", "isIndexed", "map", "zipmap", "compare", "seq", "isSubset", "range", "$into", "isMap", "peek", "mergeWith", "isSymbol", "rename", "reduceKV", "list", "constantly", "isCollection", "fnil", "isReversible", "lazySeq", "next", "transduce", "keys", "lt", "subvec", "isEven", "keep", "index", "find", "partitionBy", "dissoc", "mapIndexed", "every", "sortedSet", "resetMeta", "sum", "pop", "reverse", "hash", "queue", "repeat", "project", "dedupe", "second", "iterate", "union", "isSequential","into", "nth", "configure", "comp", "partition", "isSuperset", "isReduceable", "eduction", "getIn", "take", "isList", "rest", "isVector", "count", "gt", "cons", "sort", "keepIndexed", "apply", "gte", "completing", "distinct", "alterMeta", "dropWhile", "isOdd", "sequence", "drop", "isSet", "sortedMapBy", "vals", "inc", "renameKeys", "vector", "identity", "keyword", "remove", "interleave", "mapcat", "varyMeta", "sortedSetBy", "concat", "filter", "symbol", "isKeyword", "empty", "intersection", "mutable", "selectKeys", "isCounted", "pipeline", "curry", "subseq", "sortedMap", "updateIn", "last", "interpose", "groupBy", "takeWhile", "conj", "meta", "each", "intoArray", "join", "isSeqable", "withMeta", "lte", "takeNth", "set", "some", "primSeq", "juxt", "isEmpty", "notEquals", "isSeq", "reduce", "knit", "flatten", "repeatedly", "hasKey", "assoc", "mapInvert", "hashMap", "dec", "disj", "assocIn", "difference", "get", "merge", "equals", "isAssociative", "first", "partitionAll"];
   function addMori(param){
     return param.map(function(p){
       
@@ -231,36 +231,38 @@ case {_ ($param:expr)} => {
 }
 
 // morize(map(inc,[1,2,3]))
-macro ru {
+macro $ru {
 rule { ($param:expr)}=>{
     mori.toClj(morize($param))
 }
 }
-export ru;
-// ru(map(inc, [1,2,3]))
-let into = macro {
+export $ru;
+$ru(map(inc, [1,2,3]))
+macro $into {
 case {_ ($to, $from...)} => {
   var value = #{$to}[0].token.value;
   letstx $content = #{$to}[0].token.inner
   if(value==='[]')
-    return #{ru(into(vector($content), $from...))}
+    return #{$ru(into(vector($content), $from...))}
   if(value==='{}')
-    return #{ru (into(hashMap($content), $from...))}
+    return #{$ru(into(hashMap($content), $from...))}
   else
-    return #{ru(into($to, $from...))}
+    return #{$ru(into($to, $from...))}
   }
 }
 
-export into;
-into([0],[1,2,3,4])
 
-macro chu {
+$into([0],[1,2,3,4])
+
+export $into;
+
+macro $chu {
   rule { ($mori:expr) } => {
     mori.toJs(morize($mori))
   }
 }
-export chu;
-chu(map(fn(a([0],$)),[1,2,3]))
+export $chu;
+// $chu(map(fn(a([0],$)),[1,2,3]))
 
 macro fact {
   rule {

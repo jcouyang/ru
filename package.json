@@ -18,14 +18,21 @@
   },
   "homepage": "https://github.com/jcouyang/ru",
   "devDependencies": {
+    "browserify": "^10.2.4",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.5.2",
     "gulp-jasmine": "^2.0.1",
     "gulp-sweetjs": "^0.6.0",
     "jasmine": "^2.3.1",
-    "sweet.js": "^0.7.4"
+    "sweet.js": "^0.7.4",
+    "sweetjsify": "0.0.1"
   },
   "dependencies": {
     "mori": "^0.3.2"
+  },
+  "sweetjsify": {
+    "modules": [
+      "./index.sjs"
+    ]
   }
 }

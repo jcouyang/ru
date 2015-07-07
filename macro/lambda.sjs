@@ -1,4 +1,4 @@
-macro fn {
+macro $$ {
 case {
   $ctx
   ($body:expr)
@@ -21,5 +21,5 @@ case {
 }
 }
 
-// fn($+$2+$1+$5+($5+$1))
-export fn;
+$$($+$2+$1+$5+($5+$1))
+export $$;

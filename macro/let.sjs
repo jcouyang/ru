@@ -15,7 +15,7 @@ macro destruct {
   rule {[$id:ident $tail...]=$val:expr} => {destruct $id=($val.shift()), destruct [$tail...]=$val.slice(1)}
 }
 
-macro let { 
+macro $let { 
 case {_ ($($param:invoke(destruct)) (,)...){$body:expr...$last:expr} } => {
     var param = localExpand(#{$param...});
     var keys=[],vals=[]
@@ -59,14 +59,14 @@ case {_ ($($param:invoke(destruct)) (,)...){$body:expr...$last:expr} } => {
   rule { $id:ident } => { var $id }
 }
 
-let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
+$let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
       x+y+z
 }
-export let
+export $let
 
-macro loop {
-  rule {($params...){$body... recur($binding:expr(,)...)}} => {
-    let($params...){
+macro $loop {
+  rule {($params...){$body... $recur($binding:expr(,)...)}} => {
+    $let($params...){
       while (true) {
         $body...;
           $binding(;)...
@@ -74,7 +74,7 @@ macro loop {
     }
   }
 }
-export loop
+export $loop
 
 // loop(a=1,b=18){
 //   if (a > b)

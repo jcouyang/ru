@@ -6,10 +6,10 @@ var fs = require('fs');
 
 var macros = fs.readdirSync('macro').map(function(m){return './macro/'+m})
 
-gulp.task('sweetify', function(){
+gulp.task('sweetify', ['concat'], function(){
   return gulp.src("spec/**/*.sjs")
     .pipe(sweetjs({
-      modules: macros
+      modules: ['./index.sjs']
     }))
     .pipe(gulp.dest('spec/build'))
 
@@ -24,3 +24,4 @@ gulp.task('concat', function() {
     .pipe(concat('index.sjs'))
     .pipe(gulp.dest('./'))
 })
+
