@@ -17,9 +17,17 @@ module.exports = sweet.currentReadtable().extend({
         reader.makeDelimiter('()',pun.inner)
       );
     case '{}':
-      return [reader.makeIdentifier('mori.hashMap')].concat(
-        reader.makeDelimiter('()',pun.inner)
-      );
+      if(pun.inner.filter(function(token){return token.value===','||token.value===':'}).length>0){
+        var hash = pun.inner.map(function(token){
+          if(token.value===':')
+            token.value=','
+          return token;
+        })
+        return [reader.makeIdentifier('mori.hashMap')].concat(
+          reader.makeDelimiter('()',hash)
+        );
+      }
+      return null
       
     default: reader.throwSyntaxError('ru',
                                      'Expected delimiter after #: {}, [], (), #{}',

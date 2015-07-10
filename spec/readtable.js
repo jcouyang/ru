@@ -1,4 +1,5 @@
 var sweet = require('sweet.js');
+sweet.loadMacro('./macro/lambda')
 sweet.setReadtable('./src/readtable.js')
 describe('readtable for mori datastructure', function() {
 
@@ -23,8 +24,10 @@ describe('readtable for mori datastructure', function() {
     expect(reads[0].token.value).toEqual('mori.set')
   })
   
-  it('should create rambda via #()',function() {
+  it('should create lambda via #()',function() {
     var reads = sweet.compile('#($ + $1)')
-    expect(reads.code).toBe('$$($ + $1);')
+    expect(reads.code).toBe('(function () {\n\
+    return arguments[0] + arguments[0];\n\
+});')
   })
 })
