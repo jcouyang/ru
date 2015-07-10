@@ -31,7 +31,7 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
 
 ```javascript
   fact 'defn arity func' {
-    defn f {
+    $defn f {
       (a){a}
       (a, b) {a+b}
     }
@@ -44,7 +44,7 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
 
 ```js
  fact 'with place holder' {
-    should [1,2,3,4].reduce(fn($+$2),0) => 10
+    should [1,2,3,4].reduce(#($+$2),0) => 10
   }
 ```
 
@@ -52,14 +52,14 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
 
 ```js
   fact 'init variables and return expr' {
-    should let(a=1,b=2){a+b} => 3;
+    should $let(a=1,b=2){a+b} => 3;
   }
 ```
 
 ### destructure let
 ```js
   fact 'destructure nested array' {
-    should let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
+    should $let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
       x+y+z
     } => 7
   }
@@ -68,7 +68,7 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
 ## looprecur
 ```javascript
   fact 'recur function' {
-    defn f{(a,b){
+    $defn f{(a,b){
       if(a>b) return a;
       recur(a++,b--)
     }}
@@ -78,7 +78,7 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
 
 ```javascript
   fact 'looprecur' {
-    loop(a=1,b=36){
+    $loop(a=1,b=36){
       if(a>b) return a;
       recur(a++,b--)
     } => 19
@@ -103,7 +103,9 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
 ## 入(rù) mori datastructure
 ```js
   fact 'js to mori datastructure' {
-    should mori.equals(ru(map(inc, [0,1,2,3,4])), mori.vector(1,2,3,4,5)) => true
+  should mori.equals(
+    $ru(map(inc, [0,1,2,3,4])),
+    mori.vector(1,2,3,4,5)) => true
   }
   fact 'array' {
     should mori.equals(into([0],[1,2,3,4]), mori.vector(0,1,2,3,4)) => true
@@ -113,8 +115,16 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
 ## 出(chū) mori datastructure
 ```js
   fact 'mori expression to js' {
-    should chu(map(inc, [0,1,2,3,4])).pop() => 5
+    should $chu(map(inc, [0,1,2,3,4])).pop() => 5
   }
 ```
 
+## Readtable
+### mori datastructure literals
+
+```js
+#[bar, he] // => mori.vector(bar,he)
+#{a: 1, b: 2} //=> mori.hashMap(:a, 1, :b, 2)
+##{1, 2, 3} //=> mori.set([1,2,3])
+```
 [Checkout all **Readable** Specs for detail...](https://github.com/jcouyang/ru/tree/master/spec)

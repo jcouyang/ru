@@ -1,2 +1,8 @@
 _site
 .sass-cache
+Gemfile
+Gemfile.lock
+index.sjs
+node_modules/
+spec/
+src/
