@@ -18,11 +18,15 @@ module.exports = sweet.currentReadtable().extend({
       );
     case '{}':
       if(pun.inner.filter(function(token){return token.value===','||token.value===':'}).length>0){
-        var hash = pun.inner.map(function(token){
-          if(token.value===':')
-            token.value=','
-          return token;
-        })
+        var hash = pun.inner.reduce(function(acc, token){
+          if(token.value===':'){
+            token.value=',';
+            if(acc[acc.length-1].type===reader.Token.Identifier)
+              acc[acc.length-1] = reader.makeStringLiteral(acc[acc.length-1].value)
+          }
+          acc.push(token)
+          return acc;
+        },[])
         return [reader.makeIdentifier('mori.hashMap')].concat(
           reader.makeDelimiter('()',hash)
         );
@@ -31,7 +35,7 @@ module.exports = sweet.currentReadtable().extend({
       
     default: reader.throwSyntaxError('ru',
                                      'Expected delimiter after #: {}, [], (), #{}',
-                                    hashtag);
+                                     hashtag);
     }
   }
 })

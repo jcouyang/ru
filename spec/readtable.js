@@ -14,9 +14,20 @@ describe('readtable for mori datastructure', function() {
     }).toThrowError(SyntaxError)
   })
 
+  it('should create hashmap via #{a:b}',function() {
+    var reads = sweet.compile('#{bar:"foo"}')
+    expect(reads.code).toBe("mori.hashMap('bar', 'foo');")
+  })
+
+  
   it('should create hashmap via #{}',function() {
-    var reads = sweet.compile('#{bar, he}')
-    expect(reads.code).toBe('mori.hashMap(bar, he);')
+    var reads = sweet.compile('#{"bar":"foo"}')
+    expect(reads.code).toBe("mori.hashMap('bar', 'foo');")
+  })
+
+  it('should create hashmap via #{Vector: String}',function() {
+    var reads = sweet.compile('#{#[1,2,3]:"foo"}')
+    expect(reads.code).toBe("mori.hashMap(mori.vector(1, 2, 3), 'foo');")
   })
 
   it('should create set via ##{}',function() {
