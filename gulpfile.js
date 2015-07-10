@@ -15,9 +15,10 @@ gulp.task('sweetify', ['concat'], function(){
 
 })
 gulp.task("spec", ['sweetify'], function() {
-  return gulp.src("spec/build/**/*.js")
+  return gulp.src("spec/**/*.js")
     .pipe(jasmine())
 })
+
 
 gulp.task('concat', function() {
   return gulp.src(['./LICENSE.txt','./macro/*.sjs'])
