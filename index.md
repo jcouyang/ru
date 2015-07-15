@@ -3,6 +3,8 @@ layout: default
 ---
 
 # What is 入
+<a href="https://news.ycombinator.com/submit" class="hn-button" data-url="http://ru-lang.org/" data-count="horizontal">Vote on Hacker News</a>
+<a aria-label="Star jcouyang/ru on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/jcouyang/ru#stargazers_count" data-count-href="/jcouyang/ru/stargazers" data-icon="octicon-star" href="https://github.com/jcouyang/ru" class="github-button">Star</a>
 
 入 is a bunch of macros and datastructures ported from clojure to javascript
 
