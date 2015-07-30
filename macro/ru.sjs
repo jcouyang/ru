@@ -20,7 +20,7 @@ case {_ ($param:expr)} => {
 // morize(map(inc,[1,2,3]))
 macro $ru {
 rule { ($param:expr)}=>{
-    mori.toClj(morize($param))
+  mori.extra.toClj(morize($param))
 }
 }
 export $ru;
@@ -38,10 +38,6 @@ case {_ ($to, $from...)} => {
   }
 }
 
-
-$into([0],[1,2,3,4])
-
-export $into;
 
 macro $chu {
   rule { ($mori:expr) } => {

@@ -28,6 +28,7 @@
     "sweetjsify": "0.0.1"
   },
   "dependencies": {
+    "con.js": "^0.4.0",
     "mori": "^0.3.2"
   },
   "sweetjsify": {
