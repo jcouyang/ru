@@ -1,4 +1,4 @@
-* completed [4/20]
+* completed [5/19]
 ** DONE lambda
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
@@ -38,5 +38,7 @@
 ** TODO ->
 ** TODO defmulti
 ** TODO defmethod
-** TODO go
-** TODO <!
+** DONE go routine
+:LOGBOOK:  
+- State "DONE"       from "TODO"       [2015-08-01 Sat 10:31]
+:END:      
