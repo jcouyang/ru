@@ -5,17 +5,6 @@ case {
 } => {
   return #{
     (function() {
-      macroclass itemval {
-        pattern {
-          rule { $val:expr }
-        }
-        pattern {
-          rule { $val:lit}
-        }
-        pattern {
-          rule { $val:ident }
-        }
-      }
 
       let (<!) = macro {
         rule infix { var $left:ident |  $right:expr $rest $[...] } => {
@@ -26,7 +15,7 @@ case {
         }
         
         rule infix { $left:expr |  $right:expr $rest $[...] } => {
-          return $right.take().then(function (value) {
+          return mori.async.take$($right, function (value) {
             $left = value
             $rest $[...]
           })
@@ -52,20 +41,45 @@ case {
           })
         }
       }
+
+      let (<!alts) = macro {
+        rule infix { var $left:ident |  $right:expr $rest $[...] } => {
+          return mori.async.doAlts(function (value) {
+            $left = value
+            $rest $[...]
+          }, $right)
+        }
+        
+        rule infix { $left:expr |  $right:expr $rest $[...] } => {
+          return mori.async.doAlts(function (value) {
+            $left = value
+            $rest $[...]
+          }, $right)
+        }
+      }
       $body ...
-    })()
-  };
+    })();
+  }
 }
-}
-
-channel1 = mori.async.chan();
-
-go {
-  var b <! channel1;
-  var c <! channel2;
-  "asdf" >! channel1;
-  somthing() >! channel2
-  return JSON.parse(b.concat(a));
 }
 
 export go;
+
+
+macro goLoop {
+  rule { ($key:ident=$val:expr (,) ...){$body ... recur($bindings...)}}  => {
+    go {
+      (function loop($val(,)...){
+        $body...
+          loop(a)
+      })($val(,)...)
+    };
+  }
+}
+
+export goLoop;
+
+goLoop(a=1){
+  v <! chan()
+  recur(a++)
+}

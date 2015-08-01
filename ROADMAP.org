@@ -1,4 +1,4 @@
-* completed [5/19]
+* completed [4/19]
 ** DONE lambda
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
@@ -38,7 +38,21 @@
 ** TODO ->
 ** TODO defmulti
 ** TODO defmethod
-** DONE go routine
+** IN PROGRESS go routine
 :LOGBOOK:  
+- State "IN PROGRESS" from "DONE"       [2015-08-01 Sat 10:37]
 - State "DONE"       from "TODO"       [2015-08-01 Sat 10:31]
 :END:      
+*** DONE go block
+:LOGBOOK:  
+- State "DONE"       from ""           [2015-08-01 Sat 10:38]
+:END:      
+*** DONE <! and >!
+:LOGBOOK:  
+- State "DONE"       from ""           [2015-08-01 Sat 10:38]
+:END:      
+*** DONE alts!
+:LOGBOOK:  
+- State "DONE"       from ""           [2015-08-01 Sat 11:07]
+:END:      
+*** go-loop
