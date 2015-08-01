@@ -67,11 +67,11 @@ export go;
 
 
 macro goLoop {
-  rule { ($key:ident=$val:expr (,) ...){$body ... recur($bindings...)}}  => {
+  rule { ($($key:ident=$val:expr) (,) ...){$body ... recur($bindings...)}}  => {
     go {
-      (function loop($val(,)...){
+      (function loop($key(,)...){
         $body...
-          loop(a)
+          loop($bindings...)
       })($val(,)...)
     };
   }
