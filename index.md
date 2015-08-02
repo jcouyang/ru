@@ -50,15 +50,7 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
   }
 ```
 
-## let
-
-```js
-  fact 'init variables and return expr' {
-    should $let(a=1,b=2){a+b} => 3;
-  }
-```
-
-### destructure let
+### let
 ```js
   fact 'destructure nested array' {
     should $let([x,[y]]=[1,[2,4],3], [z] = [4,5,6]){
@@ -67,7 +59,7 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
   }
 ```
 
-## looprecur
+## recur
 ```javascript
   fact 'recur function' {
     $defn f{(a,b){
@@ -87,19 +79,57 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
   }
 ```
 
-## Existential
+## core.async
 ```js
-  fact '?()' {
-    fact 'nil'{
-      var a = {b:null};
-      should a.b?() => undefined  
-    }
-    fact 'not nil' {
-      var a = {b:null};
-      a.b =fn(5);
-      should a.b?() => 5
-    }
-  }
+var mori = require('con.js')
+fact 'core.async' {
+  it('async put and get channel a and b', function(done) {
+    var channel1 = mori.async.chan();
+    var channel2 = mori.async.chan();
+    var data2 = [1,2,3];
+    go {
+      var a <! channel1;
+      var b <! channel2;
+      expect(a).toBe("data1");
+      expect(b).toEqual([1,2,3]);
+      done();
+    };
+    go {data2 >! channel2};
+    go {'data1' >! channel1};
+  })
+
+  it('alts channel a and b', function(done) {
+    var channela = mori.async.chan();
+    var channelb = mori.async.chan();
+    var data2 = [1,2,3];
+
+    go {
+      var anywho <!alts [channela, channelb];
+      // vector.a(0) is equals to nth(vector, 0)
+      expect(anywho.a(0)).toEqual([1,2,3]);
+      expect(anywho.a(1)).toBe(channelb);
+      done();
+    };
+    go {data2 >! channelb};
+    go {'data1' >! channela};
+  })
+}
+```
+## thread
+```js
+should ('foo' ->> [mori.conj(mori.vector('bar')),
+                   mori.map(function(x){return x.toUpperCase()})])
+  .toString() => '("BAR" "FOO")'
+}
+```
+
+## Readtable
+### mori datastructure literals
+
+```js
+#[bar, he] // => mori.vector(bar,he)
+#{a: 1, b: 2} //=> mori.hashMap(:a, 1, :b, 2)
+##{1, 2, 3} //=> mori.set([1,2,3])
 ```
 
 ## 入(rù) mori datastructure
@@ -121,12 +151,5 @@ so 入 here to to rip all good parts of clojure into native macros of JavaScript
   }
 ```
 
-## Readtable
-### mori datastructure literals
 
-```js
-#[bar, he] // => mori.vector(bar,he)
-#{a: 1, b: 2} //=> mori.hashMap(:a, 1, :b, 2)
-##{1, 2, 3} //=> mori.set([1,2,3])
-```
 [Checkout all **Readable** Specs for detail...](https://github.com/jcouyang/ru/tree/master/spec)
