@@ -65,7 +65,6 @@ case {
 
 export go;
 
-
 macro goLoop {
   rule { ($($key:ident=$val:expr) (,) ...){$body ... recur($bindings...)}}  => {
     go {
@@ -78,8 +77,3 @@ macro goLoop {
 }
 
 export goLoop;
-
-goLoop(a=1){
-  v <! chan()
-  recur(a++)
-}
