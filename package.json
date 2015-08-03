@@ -3,6 +3,9 @@
   "version": "0.2.0",
   "description": "mori + macro => clojure flavored js",
   "main": "index.sjs",
+  "bin": {
+    "ru": "./bin/ru.js"
+  },
   "scripts": {
     "test": "gulp spec",
     "prepublish": "gulp concat"
@@ -24,12 +27,12 @@
     "gulp-jasmine": "^2.0.1",
     "gulp-sweetjs": "^0.6.0",
     "jasmine": "^2.3.1",
-    "sweet.js": "^0.7.4",
+    "npm": "^2.13.3",
     "sweetjsify": "0.0.1"
   },
   "dependencies": {
     "con.js": "^0.4.0",
-    "mori": "^0.3.2"
+    "sweet.js": "^0.7.4"
   },
   "sweetjsify": {
     "modules": [
