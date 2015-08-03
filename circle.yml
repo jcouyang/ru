@@ -1,0 +1,7 @@
+deployment:
+  production:
+    branch: master
+    commands:
+      - npm login
+      - npm publish
+      - git push
