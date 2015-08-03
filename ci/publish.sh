@@ -6,6 +6,4 @@ then
     echo "publish new version $VERSION"
     ./login-npm.sh
     npm publish
-    git tag $VERSION
-    git push --tags
 fi
