@@ -4,6 +4,6 @@ VERSION=$(./ci/version)
 if [ $(npm view ru-lang version) != $VERSION ]
 then
     echo "publish new version $VERSION"
-    ./login-npm.sh
+    ./ci/login-npm.sh
     npm publish
 fi
