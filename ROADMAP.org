@@ -1,4 +1,4 @@
-* completed [7/17]
+* completed [71%]
 ** DONE lambda
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
@@ -29,12 +29,18 @@
 :LOGBOOK:  
 - State "DONE"       from "TODO"       [2015-08-03 Mon 13:48]
 :END:      
-** TODO when
-** TODO when-let
-** TODO if-let
-** TODO when-some
-** TODO if-some
-** TODO dotimes
+** DONE if-let
+:LOGBOOK:  
+- State "DONE"       from "TODO"       [2015-08-03 Mon 15:23]
+:END:      
+** DONE if-some
+:LOGBOOK:  
+- State "DONE"       from "TODO"       [2015-08-03 Mon 15:34]
+:END:      
+** DONE dotimes
+:LOGBOOK:  
+- State "DONE"       from "TODO"       [2015-08-03 Mon 15:07]
+:END:      
 ** TODO doseq
 ** DONE thread
 :LOGBOOK:  
