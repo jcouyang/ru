@@ -1,4 +1,4 @@
-* completed [6/18]
+* completed [7/17]
 ** DONE lambda
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
@@ -25,7 +25,10 @@
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2015-06-07 Sun 00:45]
 :END:
-** TODO cond
+** DONE cond
+:LOGBOOK:  
+- State "DONE"       from "TODO"       [2015-08-03 Mon 13:48]
+:END:      
 ** TODO when
 ** TODO when-let
 ** TODO if-let

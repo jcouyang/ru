@@ -4,7 +4,7 @@ fact '$defn' {
     should f(1) => 1;
   }
 
-  fact '$defn w/o name' {
+  fact '$fn w/o name' {
     var f = $fn(a){a};
     should f(1) => 1;
   }
