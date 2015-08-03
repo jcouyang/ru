@@ -26,35 +26,42 @@ macro caseFunc {
 }
 
 macro $defn{
-  rule { $name { $(($args (,) ...){$body... recur ($binding:expr(,)...)})...} } => {
-    function $name (){
+  rule { $name($args...){$body...} } => {
+    var $name = $fn{($args...){$body...}};
+  }
+
+  
+  rule { $name { $body... } } => {
+    var $name = $fn{$body...};
+  }
+}
+
+macro $fn {
+  rule {{ $(($args (,) ...){$body... recur ($binding:expr(,)...)})...} } => {
+    (function(){
       switch(arguments.length){
         $(caseFunc ($args...) {$body... recur($binding(,)...)};
          )...
       }
-    }
+    });
   }
-
   
-  rule { $name { $(($args (,) ...){$body ...})...} } => {
-    function $name (){
-      switch(arguments.length){
-        $(caseFunc ($args...) {$body...};
-         )...
-      }
-    }
-  }
-
   rule { { $(($args (,) ...){$body ...})...} } => {
     (function (){
         switch(arguments.length){
           $(caseFunc ($args...) {$body...};
            )...
         }
-    })
+    });
+  }
+
+  rule { ($args...){$body...} } => {
+    $fn{($args...){$body...}};
   }
 }
+
 export $defn;
+export $fn;
 // $defn f{(a,b){
 //   if(a===b) return a
 //   recur(a++,b--)

@@ -5,7 +5,7 @@ fact '$defn' {
   }
 
   fact '$defn w/o name' {
-    var f = $defn {(a){a}};
+    var f = $fn(a){a};
     should f(1) => 1;
   }
 
@@ -18,8 +18,17 @@ fact '$defn' {
     should f(2,3) => 5;
   }
 
+  fact '$defn arity anomynous func' {
+    var f = $fn {
+      (a){a}
+      (a, b) {a+b}
+    }
+    should f(1) => 1;
+    should f(2,3) => 5;
+  }
+
   fact 'with statements, final is expression' {
-    var f = $defn {(a){a=1;a}};
+    var f = $fn(a){a=1;a};
     should f(2) => 1;
   }
 
