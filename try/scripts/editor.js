@@ -589,7 +589,7 @@ function compileFull(editor, output, readableNames, highlight, cursor) {
     return Rx.Observable.create(function(observer) {
         var code = editor.getValue(), result;
         
-        window.location = "editor.html#" + encodeURI(code);
+        window.location = "#" + encodeURI(code);
         localStorage[storage_code] = code;
       console.log(sweet.currentReadtable())
         observer.onNext([
