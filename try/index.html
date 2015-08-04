@@ -1,12 +1,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Edit Sweet.js</title>
+    <title>ru-lang repl</title>
     <script src="scripts/jquery.js"></script>
     <script src="scripts/codemirror.js"></script>
     <script src="scripts/vim.js"></script>
     <script src="scripts/emacs.js"></script>
     <script src="scripts/escodegen.js"></script>
+    <script src="https://cdn.rawgit.com/jcouyang/conjs/master/mori.js"></script>
     <link rel="stylesheet" href="codemirror.css">
     <link rel="stylesheet" href="solarized.css">
     <script src="mode/javascript/javascript.js"></script>
@@ -203,7 +204,7 @@
 <body>
 
 <header class="header">
-    <span class="title align-left">sweeten your javascript</span>
+    <span class="title align-left">入语言 REPL</span>
     <span class="options">
         <a href="javascript:void(0)" id="btn-compile" class="align-left option btn">Compile</a >
         <a href="javascript:void(0)" id="btn-eval" class="align-left option btn">Eval</a >
@@ -219,7 +220,7 @@
         </span>
         <span class="align-left option cks">
             <span class="ck">
-                <input id="ck-auto-compile" name="ck-auto-compile" type="checkbox" value="compile"/>
+                <input checked id="ck-auto-compile" name="ck-auto-compile" type="checkbox" value="compile"/>
                 <label for="ck-auto-compile">auto-compile</label>
             </span>
             <span class="ck">
@@ -237,9 +238,9 @@
 
 <div id='edit-box' class="code-input">
 <textarea id="editor">/*
-Welcome to sweet.js!
+Welcome to ru-lang!
 
-You can play around with macro writing here on the left side and
+You can play around with ru-lang macro writing here on the left side and
 your code will automatically be compiled on the right. This page
 will also save your code to localStorage on every successful
 compile so feel free to close the page and come back later!
@@ -247,54 +248,27 @@ compile so feel free to close the page and come back later!
 
 // Here is a really simple identity macro to get started.
 
-// The `macro` keyword is used to create and name new macros.
-macro id {
-    rule {
-        // after the macro name, match:
-        // (1) a open paren
-        // (2) a single token and bind it to `$x`
-        // (3) a close paren
-        ($x)
-    } => {
-        // just return the token we bound to `$x`
-        $x
-    }
-}
-id ( 42 );
-
-// Note that a single token to sweet.js includes matched
-// delimiters not just numbers and identifiers. For example,
-// an array with all of its elements counts as one token:
-id ([1,2,3])
-
-// One of the really important things sweet.js does is protect
-// macros from unintentionally binding or capturing variables they
-// weren't supposed to. This is called hygiene and to enforce hygiene
-// sweet.js must carefully rename all variable names.
-
-var x; // note the different name on the right --->
-
-// For example, let's look at the swap macro that uses a temporary
-// variable to swap the contents of two other vars:
-macro swap {
-    rule {
-        ($x, $y)
-    } => {
-        var tmp = $y;
-        $y = $x;
-        $x = tmp;
-    }
+$defn f {
+  (a){a}
+  (a, b) {a+b}
 }
 
-var foo = 100;
-var bar = 200;
-var tmp = 'my other temporary variable';
+var channel1 = mori.async.chan();
+var channel2 = mori.async.chan();
+var data2 = [1,2,3];
+go {
+  var a <! channel1;
+  var b <! channel2;
+  console.log(a)
+  console.log(b)
+};
+go {data2 >! channel2};
+go {'data1' >! channel1};
 
-swap (foo, bar)
+#[bar, he]
+#{a: 1, b: 2}
+##{1, 2, 3}
 
-// Notice that even though the `tmp` variable we made outside of
-// the macro had the same name as the `tmp` variable inside the
-// macro, sweet.js kept them distinct.
 </textarea>
 </div>
 

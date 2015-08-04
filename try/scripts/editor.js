@@ -195,7 +195,7 @@ function safeEvalOutput(code) {
     try {
         eval(code);
     } catch(e) {
-        console.error(e && e.stack || e);
+        console.error(e && e.message || e);
     }
 }
 
