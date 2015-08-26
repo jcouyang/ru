@@ -248,6 +248,8 @@ compile so feel free to close the page and come back later!
 
 // Here is a really simple identity macro to get started.
 
+log = #(console.log($.toString()))
+
 $defn f {
   (a){a}
   (a, b) {a+b}
@@ -259,16 +261,19 @@ var data2 = [1,2,3];
 go {
   var a <! channel1;
   var b <! channel2;
-  console.log(a)
-  console.log(b)
+  log(a)
+  log(b)
 };
 go {data2 >! channel2};
 go {'data1' >! channel1};
 
-#[bar, he]
-#{a: 1, b: 2}
-##{1, 2, 3}
+log(#['bar', 'he'])
+log(#{a: 1, b: 2})
+log(##{1, 2, 3})
 
+log($ru(
+'foo' ->> [conj(#['bar']),
+           map(#($.toUpperCase()))]))
 </textarea>
 </div>
 
